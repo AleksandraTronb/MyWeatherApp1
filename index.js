@@ -15,7 +15,6 @@ function displayDetails(response) {
   let currentDateELement = document.querySelector("#current-date");
   let date = new Date(response.data.time * 1000);
   currentDateELement.innerHTML = formatDate(date);
-  console.log(response.data.city);
 }
 
 function search(event) {
@@ -25,8 +24,7 @@ function search(event) {
 }
 function searchCity(city) {
   let apiKey = "b2a5adcct04b33178913oc335f405433";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=869fb0d3774e410b801b3o2atc64d943`;
-  console.log(apiUrl);
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
   axios.get(apiUrl).then(displayDetails);
 }
 function formatDate(date) {
@@ -59,8 +57,4 @@ function formatDate(date) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
-//let currentDateELement = document.querySelector("#current-date");
-//let currentDate = new Date();
-
-//currentDateELement.innerHTML = formatDate(currentDate);
 searchCity("Dnipro");
