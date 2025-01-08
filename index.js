@@ -61,11 +61,10 @@ function showDay(timestamp) {
 }
 function getForecast(city) {
   let apiKey = "b2a5adcct04b33178913oc335f405433";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=Dnipro&key=b2a5adcct04b33178913oc335f405433`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
   axios.get(apiUrl).then(displayForecast);
 }
 function displayForecast(response) {
-  //let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHTML = "";
   response.data.daily.forEach(function (day, index) {
     if (index < 5) {
@@ -93,4 +92,3 @@ let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
 searchCity("Dnipro");
-//displayForecast();
