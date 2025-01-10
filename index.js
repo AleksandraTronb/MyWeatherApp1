@@ -1,14 +1,16 @@
 function displayDetails(response) {
-  if (response.data.city === "undefined") {
-    console.log("sorry");
+  let cityElement = document.querySelector("#current-city");
+  //
+  if (typeof response.data.city === "undefined") {
+    alert("The name of city is incorrect, try again");
+  } else {
+    cityElement.innerHTML = response.data.city;
   }
   let temperatureElement = document.querySelector("#current-temperature");
 
   let temperature = Math.round(response.data.temperature.current);
-  let cityElement = document.querySelector("#current-city");
-  cityElement.innerHTML = response.data.city;
-
   console.log(response.data.temperature.current);
+
   temperatureElement.innerHTML = temperature;
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
@@ -92,7 +94,6 @@ function displayForecast(response) {
     </div>
   </div>`;
     }
-    `<div class="weather-forecast-dayy">${response.data.city}</div>`;
   });
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHTML;
@@ -100,4 +101,4 @@ function displayForecast(response) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
-//searchCity("Dnipro");
+searchCity("Dnipro");
