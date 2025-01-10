@@ -1,8 +1,14 @@
 function displayDetails(response) {
+  if (response.data.city === "undefined") {
+    console.log("sorry");
+  }
   let temperatureElement = document.querySelector("#current-temperature");
+
   let temperature = Math.round(response.data.temperature.current);
   let cityElement = document.querySelector("#current-city");
   cityElement.innerHTML = response.data.city;
+
+  console.log(response.data.temperature.current);
   temperatureElement.innerHTML = temperature;
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
@@ -26,6 +32,8 @@ function search(event) {
 function searchCity(city) {
   let apiKey = "b2a5adcct04b33178913oc335f405433";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+  console.log(city);
+
   axios.get(apiUrl).then(displayDetails);
 }
 function formatDate(date) {
@@ -84,6 +92,7 @@ function displayForecast(response) {
     </div>
   </div>`;
     }
+    `<div class="weather-forecast-dayy">${response.data.city}</div>`;
   });
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHTML;
@@ -91,4 +100,4 @@ function displayForecast(response) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
-searchCity("Dnipro");
+//searchCity("Dnipro");
